@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>My Server</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="nombre"></h:outputLabel>
+                <h:inputText value="#{personaBean.persona.nombre}"></h:inputText>
+                <h:outputLabel value="apellido"></h:outputLabel>
+                <h:inputText value="#{personaBean.persona.apellido}"></h:inputText>
+                <h:outputLabel value="sexo"></h:outputLabel>
+                <h:selectOneMenu value="#{personaBean.persona.sexo}">
+                    <f:selectItem itemValue="M" itemLabel="Masculino"></f:selectItem>
+                    <f:selectItem itemValue="F" itemLabel="Femenino"></f:selectItem>
+                </h:selectOneMenu>
+            </h:panelGrid>
+            <h:commandButton value="Agregar" actionListener="#{personaBean.addPerson()}"></h:commandButton>
+            
+            <h:dataTable value="#{personaBean.listPerson}" var="data" width="800" >
+                <h:column>
+                    <h:outputLabel value="#{data.nombre}"></h:outputLabel>
+                </h:column>
+                <h:column>
+                    <h:outputLabel value="#{data.apellido}" ></h:outputLabel>
+                </h:column>
+                <h:column>
+                <h:outputLabel value="#{data.sexo} " ></h:outputLabel>
+                </h:column>
+                <h:column>
+                    <h:commandButton   value="Eliminar" actionListener="#{personaBean.deletePerson(data)}"></h:commandButton>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+
+
+    </h:body>
+</html>
